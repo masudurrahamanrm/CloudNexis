@@ -23,7 +23,7 @@ const TeamPage = () => {
       role: 'Director & Fullstack Developer',
       image: '/basim.jpg',
       bio: 'Crafting high-fidelity digital experiences that bridge the gap between complex tech and human intuition.',
-      skills: ['Figma', 'Modern UI', 'Branding']
+      skills: ['Modern UI', 'Branding']
     },
     {
       name: 'Ijaj Ahamed',
