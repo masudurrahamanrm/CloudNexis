@@ -7,26 +7,29 @@ const projects = [
     name: 'Keep In Mind',
     tech: 'React • Firebase • Auth',
     image: 'https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    description: 'A sophisticated task management and mindfulness platform for modern professionals.',
-    url: 'https://keepinmind.in'
+    description: 'A sophisticated task management platform. Currently under development.',
+    status: 'Coming Soon'
   },
   {
     name: 'Nexis Commerce',
     tech: 'React • Node • Stripe',
     image: 'https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    description: 'A revolutionary e-commerce engine powering the next generation of online retail.'
+    description: 'A revolutionary e-commerce engine. Currently under development.',
+    status: 'Coming Soon'
   },
   {
     name: 'Aether Fitness',
     tech: 'React Native • Firebase',
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    description: 'Real-time workout synchronization and AI-driven health insights for athletes.'
+    description: 'Real-time workout synchronization platform. Currently under development.',
+    status: 'Coming Soon'
   },
   {
     name: 'Flux Dashboard',
     tech: 'Next.js • Tailwind • SQL',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    description: 'An ultra-fast analytics platform for monitoring high-frequency business data.'
+    description: 'An ultra-fast analytics platform. Currently under development.',
+    status: 'Coming Soon'
   }
 ];
 
@@ -89,28 +92,38 @@ const Portfolio = () => {
                     alt={project.name} 
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
-                  <a 
-                    href={project.url || "#"} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-500">
-                      <ExternalLink size={20} />
+                  {project.status === 'Coming Soon' ? (
+                    <div className="absolute top-4 right-4 z-20">
+                      <div className="px-3 py-1 rounded-full bg-secondary/90 backdrop-blur-sm border border-secondary/20 shadow-lg shadow-secondary/20">
+                        <span className="text-[9px] font-black uppercase tracking-widest text-white">Coming Soon</span>
+                      </div>
                     </div>
-                  </a>
+                  ) : (
+                    <a 
+                      href={project.url || "#"} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center"
+                    >
+                      <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-500">
+                        <ExternalLink size={20} />
+                      </div>
+                    </a>
+                  )}
                 </div>
                 
                 <div className="p-5 flex-grow flex flex-col justify-between">
                   <div>
-                    <div className="text-secondary text-[9px] font-black uppercase tracking-[0.2em] mb-2">{project.tech}</div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="text-secondary text-[9px] font-black uppercase tracking-[0.2em]">{project.tech}</div>
+                    </div>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">{project.name}</h3>
                     <p className="text-gray-400 text-xs leading-relaxed mb-4 font-medium line-clamp-2">
                       {project.description}
                     </p>
                   </div>
                   
-                  <div className="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-secondary to-primary transition-all duration-700 rounded-full"></div>
+                  <div className={`h-0.5 w-0 group-hover:w-full bg-gradient-to-r ${project.status === 'Coming Soon' ? 'from-secondary/50 to-secondary' : 'from-secondary to-primary'} transition-all duration-700 rounded-full`}></div>
                 </div>
               </div>
             </motion.div>
