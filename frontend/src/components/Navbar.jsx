@@ -57,17 +57,24 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                onClick={() => handleLinkClick(link.href)}
-                className="text-gray-400 hover:text-white transition-all font-semibold text-xs uppercase tracking-widest relative group"
-              >
-                {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  onClick={() => handleLinkClick(link.href)}
+                  className={`${
+                    isActive ? 'text-white' : 'text-gray-400'
+                  } hover:text-white transition-all font-semibold text-xs uppercase tracking-widest relative group`}
+                >
+                  {link.name}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}></span>
+                </Link>
+              );
+            })}
           </div>
 
           <div className="hidden md:block">
