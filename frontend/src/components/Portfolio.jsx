@@ -6,7 +6,7 @@ const projects = [
   {
     name: 'Keep In Mind',
     tech: 'React • Firebase • Auth',
-    image: '/coming-soon.png',
+    image: '/keepinmind-logo.png',
     description: 'A sophisticated task management platform. Currently under development.',
     status: 'Coming Soon'
   },
