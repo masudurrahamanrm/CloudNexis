@@ -6,7 +6,7 @@ const TrustedBy = () => {
     <section className="py-12 bg-[#000000] relative overflow-hidden">
       {/* Background Mesh Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary/5 rounded-full blur-[120px] pointer-events-none opacity-50"></div>
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] brightness-100 contrast-150 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-[0.03] brightness-100 contrast-150 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <div className="flex justify-center mb-6">
