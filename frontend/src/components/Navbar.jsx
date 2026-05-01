@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,12 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleLinkClick = (href) => {
+    if (location.pathname === href) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -35,7 +42,11 @@ const Navbar = () => {
         }`}
       >
         <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-1.5 group cursor-pointer">
+          <Link 
+            to="/" 
+            onClick={() => handleLinkClick('/')}
+            className="flex items-center gap-1.5 group cursor-pointer"
+          >
             <div className="p-1 rounded-lg group-hover:scale-110 transition-all duration-300 overflow-hidden">
               <img src="/logo.png" alt="CloudNexis Logo" className="w-10 h-10 object-contain rounded-lg scale-[1.5]" />
             </div>
@@ -50,6 +61,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
+                onClick={() => handleLinkClick(link.href)}
                 className="text-gray-400 hover:text-white transition-all font-semibold text-xs uppercase tracking-widest relative group"
               >
                 {link.name}
@@ -59,7 +71,11 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:block">
-            <Link to="/contact" className="bg-white text-black px-5 py-2 rounded-full font-bold text-xs hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2 group">
+            <Link 
+              to="/contact" 
+              onClick={() => handleLinkClick('/contact')}
+              className="bg-white text-black px-5 py-2 rounded-full font-bold text-xs hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-2 group"
+            >
               Start Project
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
@@ -69,6 +85,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <Link 
               to="/about" 
+              onClick={() => handleLinkClick('/about')}
               className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white text-[10px] font-black uppercase tracking-widest hover:bg-primary hover:border-primary transition-all duration-300"
             >
               About
@@ -76,8 +93,6 @@ const Navbar = () => {
           </div>
         </div>
       </motion.div>
-
-
     </nav>
   );
 };

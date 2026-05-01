@@ -29,6 +29,11 @@ const MobileNav = () => {
             <Link
               key={link.name}
               to={link.href}
+              onClick={() => {
+                if (isActive) {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
               className="relative group flex flex-col items-center p-2.5"
             >
               {isActive && (

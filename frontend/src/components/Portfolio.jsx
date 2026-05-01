@@ -8,28 +8,28 @@ const projects = [
     tech: 'React • Firebase • Auth',
     image: '/keepinmind-logo.png',
     description: 'A sophisticated task management platform. Currently under development.',
-    status: 'Coming Soon'
+   
   },
   {
     name: 'Nexis Commerce',
     tech: 'React • Node • Stripe',
     image: '/coming-soon.png',
     description: 'A revolutionary e-commerce engine. Currently under development.',
-    status: 'Coming Soon'
+    
   },
   {
     name: 'Aether Fitness',
     tech: 'React Native • Firebase',
     image: '/coming-soon.png',
     description: 'Real-time workout synchronization platform. Currently under development.',
-    status: 'Coming Soon'
+    
   },
   {
     name: 'Flux Dashboard',
     tech: 'Next.js • Tailwind • SQL',
     image: '/coming-soon.png',
     description: 'An ultra-fast analytics platform. Currently under development.',
-    status: 'Coming Soon'
+    
   }
 ];
 
