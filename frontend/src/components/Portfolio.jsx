@@ -11,9 +11,9 @@ const projects = [
     url: 'https://keepinmind.in'
   },
   {
-    name: 'Nexis gggCommerce',
+    name: 'ORA Vision',
     tech: 'React • Node • Stripe',
-    image: '/coming-soon.png',
+    image: '/oravision-logo.png',
     description: 'A revolutionary e-commerce engine. Currently under development.',
     status: 'Coming Soon'
   },
