@@ -31,6 +31,7 @@ const Footer = () => {
                   <Icon size={18} />
                 </a>
               ))}
+              
             </div>
           </div>
 

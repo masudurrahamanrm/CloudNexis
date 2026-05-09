@@ -11,7 +11,7 @@ const TeamPage = () => {
       role: 'Founder & Lead Architect',
       image: '/masudur.jpg',
       bio: 'Visionary engineer specializing in scalable cloud infrastructures and enterprise software.',
-      skills: ['System Design', 'Cloud Native', 'Node.js'],
+      skills: ['System Design', 'React Native', 'Node.js'],
       social: {
         instagram: 'https://www.instagram.com/ig_princeae/',
         facebook: 'https://www.facebook.com/masudur.rahaman.in',
@@ -23,7 +23,7 @@ const TeamPage = () => {
       role: 'Director & Fullstack Developer',
       image: '/basim.jpg',
       bio: 'Crafting high-fidelity digital experiences that bridge the gap between complex tech and human intuition.',
-      skills: ['Modern UI', 'Branding']
+      skills: ['Modern UI','AWS','Security']
     },
     {
       name: 'Ijaj Ahamed',
@@ -36,8 +36,8 @@ const TeamPage = () => {
       name: 'Sibkatulla Al Islam',
       role: 'Cloud Operations Lead',
       image: '/sibkatulla.jpg',
-      bio: 'Ensuring 99.9% uptime and bulletproof security for our global client network.',
-      skills: ['AWS', 'Kubernetes', 'Security']
+      bio: 'Working with Sibkatullah means your brand gets more than visuals.',
+      skills: [ 'Kubernetes', 'Branding']
     }
   ];
 

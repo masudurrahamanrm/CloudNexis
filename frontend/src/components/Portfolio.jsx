@@ -7,29 +7,29 @@ const projects = [
     name: 'Keep In Mind',
     tech: 'React • Firebase • Auth',
     image: '/keepinmind-logo.png',
-    description: 'A sophisticated task management platform. Currently under development.',
-   
+    description: 'A sophisticated task management and mindfulness platform.',
+    url: 'https://keepinmind.in'
   },
   {
     name: 'Nexis Commerce',
     tech: 'React • Node • Stripe',
     image: '/coming-soon.png',
     description: 'A revolutionary e-commerce engine. Currently under development.',
-    
+    status: 'Coming Soon'
   },
   {
     name: 'Aether Fitness',
     tech: 'React Native • Firebase',
     image: '/coming-soon.png',
     description: 'Real-time workout synchronization platform. Currently under development.',
-    
+    status: 'Coming Soon'
   },
   {
     name: 'Flux Dashboard',
     tech: 'Next.js • Tailwind • SQL',
     image: '/coming-soon.png',
     description: 'An ultra-fast analytics platform. Currently under development.',
-    
+    status: 'Coming Soon'
   }
 ];
 
@@ -117,7 +117,21 @@ const Portfolio = () => {
                     <div className="flex items-center gap-2 mb-2">
                       <div className="text-secondary text-[9px] font-black uppercase tracking-[0.2em]">{project.tech}</div>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">{project.name}</h3>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">
+                      {project.url ? (
+                        <a 
+                          href={project.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 hover:underline"
+                        >
+                          {project.name}
+                          <ExternalLink size={16} className="opacity-70 group-hover:opacity-100 transition-opacity" />
+                        </a>
+                      ) : (
+                        project.name
+                      )}
+                    </h3>
                     <p className="text-gray-400 text-xs leading-relaxed mb-4 font-medium line-clamp-2">
                       {project.description}
                     </p>

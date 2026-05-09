@@ -32,7 +32,7 @@ const Testimonials = () => {
         <h2 className="text-4xl md:text-6xl font-black text-white mb-20 tracking-tighter">
           Client <span className="bg-gradient-to-r from-[#ff0000] via-[#ef4444] to-[#991b1b] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient-x drop-shadow-[0_0_12px_rgba(255,0,0,0.3)]">Voices</span>
         </h2>
-        
+
         <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <div key={t.name} className="p-8 md:p-10 rounded-[2.5rem] glass border-white/5 text-left flex flex-col justify-between group hover:border-primary/20 transition-all duration-500">
