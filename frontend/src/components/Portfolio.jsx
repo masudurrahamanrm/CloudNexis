@@ -12,9 +12,9 @@ const projects = [
   },
   {
     name: 'ORA Vision',
-    tech: 'React • Node • Stripe',
-    image: '/oravision-logo.png',
-    description: 'A revolutionary e-commerce engine. Currently under development.',
+    tech: 'React • AI • Audio',
+    image: '/oravision-logo.jpg',
+    description: 'An assistive software platform for blind and visually impaired users. See the world, hear the possibilities.',
     status: 'Coming Soon'
   },
   {
