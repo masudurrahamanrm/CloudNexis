@@ -14,7 +14,7 @@ const projects = [
     name: 'ORA Vision',
     tech: 'React • AI • Audio',
     image: '/oravision-logo.jpg',
-    description: 'An assistive software platform for blind and visually impaired users. See the world, hear the possibilities.',
+    description: 'Empowering vision through sound.',
     status: 'Coming Soon'
   },
   {

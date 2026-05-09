@@ -3,19 +3,19 @@ import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Sarah Johnson',
+    name: 'Mr. Ayaan Sharma',
     role: 'CEO at TechBloom',
     content: 'CloudNexis built our SaaS platform in record time. Their attention to detail and UI/UX expertise is unmatched.',
     rating: 5
   },
   {
-    name: 'Michael Chen',
+    name: 'Mr. Rehan Mukherjee',
     role: 'Founder of LocalBite',
     content: 'The mobile app they developed for us has a 4.9 rating on the App Store. Highly recommended for quality work.',
     rating: 5
   },
   {
-    name: 'Emily Rodriguez',
+    name: 'Mr. Zayan Chatterjee',
     role: 'Marketing Director',
     content: 'Our conversion rate increased by 40% after the website redesign. They truly understand business growth.',
     rating: 5
