@@ -11,7 +11,7 @@ const projects = [
     url: 'https://keepinmind.in'
   },
   {
-    name: 'Nexis Commerce',
+    name: 'Nexis gggCommerce',
     tech: 'React • Node • Stripe',
     image: '/coming-soon.png',
     description: 'A revolutionary e-commerce engine. Currently under development.',
