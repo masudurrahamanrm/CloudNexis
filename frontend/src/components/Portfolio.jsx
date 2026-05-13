@@ -87,9 +87,9 @@ const Portfolio = () => {
             >
               <div className="relative overflow-hidden rounded-[2rem] glass border-white/5 p-2 h-full flex flex-col">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-[1.8rem]">
-                  <img 
-                    src={project.image} 
-                    alt={project.name} 
+                  <img
+                    src={project.image}
+                    alt={project.name}
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
                   {project.status === 'Coming Soon' ? (
@@ -99,9 +99,9 @@ const Portfolio = () => {
                       </div>
                     </div>
                   ) : (
-                    <a 
-                      href={project.url || "#"} 
-                      target="_blank" 
+                    <a
+                      href={project.url || "#"}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center"
                     >
@@ -111,7 +111,7 @@ const Portfolio = () => {
                     </a>
                   )}
                 </div>
-                
+
                 <div className="p-5 flex-grow flex flex-col justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
@@ -119,9 +119,9 @@ const Portfolio = () => {
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-secondary transition-colors">
                       {project.url ? (
-                        <a 
-                          href={project.url} 
-                          target="_blank" 
+                        <a
+                          href={project.url}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 hover:underline"
                         >
@@ -136,7 +136,7 @@ const Portfolio = () => {
                       {project.description}
                     </p>
                   </div>
-                  
+
                   <div className={`h-0.5 w-0 group-hover:w-full bg-gradient-to-r ${project.status === 'Coming Soon' ? 'from-secondary/50 to-secondary' : 'from-secondary to-primary'} transition-all duration-700 rounded-full`}></div>
                 </div>
               </div>
