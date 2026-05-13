@@ -18,9 +18,9 @@ const projects = [
     status: 'Coming Soon'
   },
   {
-    name: 'Aether Fitness',
+    name: 'ChatZone',
     tech: 'React Native • Firebase',
-    image: '/coming-soon.png',
+    image: '/chatzone-logo.png',
     description: 'Real-time workout synchronization platform. Currently under development.',
     status: 'Coming Soon'
   },
