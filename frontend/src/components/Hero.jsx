@@ -65,6 +65,7 @@ const Hero = () => {
 
     // 5. 3D Orbital Rings Globe (The Top Emerging "Blob")
     const globeGroup = new THREE.Group();
+    const isMobileDevice = window.innerWidth < 768;
 
     // Inner Dark Core Sphere
     const coreGeometry = new THREE.SphereGeometry(1.5, isMobileDevice ? 16 : 32, isMobileDevice ? 16 : 32);
@@ -75,9 +76,6 @@ const Hero = () => {
     });
     const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     globeGroup.add(coreMesh);
-
-    // Generate Neon Orbital Rings
-    const isMobileDevice = window.innerWidth < 768;
     const ringCount = isMobileDevice ? 14 : 24;
     const radius = 1.6;
     const curveSegments = isMobileDevice ? 32 : 64;
