@@ -72,8 +72,8 @@ const Global3DBackground = () => {
 
     // 6. Dynamic Interconnected Plexus Network System
     const plexusGroup = new THREE.Group();
-    const nodeCount = isMobile ? 40 : 120;
-    const maxDistance = isMobile ? 15.0 : 25.0;
+    const nodeCount = isMobile ? 65 : 120;
+    const maxDistance = isMobile ? 22.0 : 25.0;
 
     const nodePositions = new Float32Array(nodeCount * 3);
     const nodeVelocities = [];
@@ -113,7 +113,7 @@ const Global3DBackground = () => {
     const linesMaterial = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: 0.3,
+      opacity: isMobile ? 0.45 : 0.3,
       blending: THREE.AdditiveBlending,
     });
 
