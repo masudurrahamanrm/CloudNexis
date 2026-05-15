@@ -72,7 +72,7 @@ const Global3DBackground = () => {
 
     // 6. Dynamic Interconnected Plexus Network System
     const plexusGroup = new THREE.Group();
-    const nodeCount = isMobile ? 40 : 120;
+    const nodeCount = isMobile ? 25 : 120;
     const maxDistance = isMobile ? 15.0 : 25.0;
 
     const nodePositions = new Float32Array(nodeCount * 3);
@@ -132,6 +132,9 @@ const Global3DBackground = () => {
     window.addEventListener('scroll', handleScroll);
     const clock = new THREE.Clock();
 
+    const p1 = new THREE.Vector3();
+    const p2 = new THREE.Vector3();
+
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       const elapsedTime = clock.getElapsedTime();
@@ -155,9 +158,6 @@ const Global3DBackground = () => {
         if (Math.abs(positions[i * 3 + 2]) > 20) nodeVelocities[i].z *= -1;
       }
       nodeGeometry.attributes.position.needsUpdate = true;
-
-      const p1 = new THREE.Vector3();
-      const p2 = new THREE.Vector3();
 
       for (let i = 0; i < nodeCount; i++) {
         p1.set(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);

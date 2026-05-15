@@ -30,10 +30,10 @@ const Hero = () => {
 
     // 3. Renderer Setup
     const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
+      antialias: window.innerWidth >= 768, 
       alpha: true, 
       powerPreference: "high-performance",
-      precision: window.innerWidth < 768 ? "mediump" : "highp"
+      precision: window.innerWidth < 768 ? "lowp" : "highp"
     });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -76,9 +76,9 @@ const Hero = () => {
     });
     const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     globeGroup.add(coreMesh);
-    const ringCount = isMobileDevice ? 14 : 24;
+    const ringCount = isMobileDevice ? 8 : 24;
     const radius = 1.6;
-    const curveSegments = isMobileDevice ? 32 : 64;
+    const curveSegments = isMobileDevice ? 16 : 64;
     const ringColors = [0x3b82f6, 0x2563eb, 0xffffff, 0x38bdf8, 0x60a5fa, 0xffffff];
     const ringLines = [];
 
