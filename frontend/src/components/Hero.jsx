@@ -30,10 +30,10 @@ const Hero = () => {
 
     // 3. Renderer Setup
     const renderer = new THREE.WebGLRenderer({ 
-      antialias: window.innerWidth >= 768, 
+      antialias: true, 
       alpha: true, 
       powerPreference: "high-performance",
-      precision: window.innerWidth < 768 ? "lowp" : "highp"
+      precision: window.innerWidth < 768 ? "mediump" : "highp"
     });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -76,38 +76,66 @@ const Hero = () => {
     });
     const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     globeGroup.add(coreMesh);
-    const ringCount = isMobileDevice ? 8 : 24;
+    const ringCount = isMobileDevice ? 14 : 24;
     const radius = 1.6;
-    const curveSegments = isMobileDevice ? 16 : 64;
+    const curveSegments = isMobileDevice ? 32 : 64;
     const ringColors = [0x3b82f6, 0x2563eb, 0xffffff, 0x38bdf8, 0x60a5fa, 0xffffff];
     const ringLines = [];
 
-    for (let i = 0; i < ringCount; i++) {
-      const curve = new THREE.EllipseCurve(
-        0, 0,
-        radius, radius,
-        0, 2 * Math.PI,
-        false,
-        0
-      );
-
-      const points = curve.getPoints(curveSegments);
-      const ringGeometry = new THREE.BufferGeometry().setFromPoints(points);
-
-      const ringMaterial = new THREE.LineBasicMaterial({
-        color: ringColors[i % ringColors.length],
+    if (isMobileDevice) {
+      // 5b. Mobile Optimization: Lightweight Wireframe Net instead of multiple rings
+      const netGeometry = new THREE.IcosahedronGeometry(1.65, 2);
+      const netMaterial = new THREE.MeshBasicMaterial({
+        color: 0x3b82f6,
+        wireframe: true,
         transparent: true,
-        opacity: 0.75 + (Math.random() * 0.25),
+        opacity: 0.4,
       });
+      const netMesh = new THREE.Mesh(netGeometry, netMaterial);
+      globeGroup.add(netMesh);
 
-      const ringLine = new THREE.LineLoop(ringGeometry, ringMaterial);
+      // Add points at vertices for a 'plexus' look
+      const pointsMaterial = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 0.04,
+        transparent: true,
+        opacity: 0.7,
+      });
+      const netPoints = new THREE.Points(netGeometry, pointsMaterial);
+      globeGroup.add(netPoints);
+      
+      // Track for animation
+      ringLines.push({ mesh: netMesh, isNet: true, baseOpacity: 0.4 });
+      ringLines.push({ mesh: netPoints, isNet: true, baseOpacity: 0.7 });
+    } else {
+      // 5c. Desktop Version: High-quality Orbital Rings
+      for (let i = 0; i < ringCount; i++) {
+        const curve = new THREE.EllipseCurve(
+          0, 0,
+          radius, radius,
+          0, 2 * Math.PI,
+          false,
+          0
+        );
 
-      ringLine.rotation.y = (i / ringCount) * Math.PI;
-      ringLine.rotation.x = Math.sin((i / ringCount) * Math.PI) * 0.6;
-      ringLine.rotation.z = Math.cos((i / ringCount) * Math.PI) * 0.2;
+        const points = curve.getPoints(curveSegments);
+        const ringGeometry = new THREE.BufferGeometry().setFromPoints(points);
 
-      ringLines.push({ mesh: ringLine, baseOpacity: ringMaterial.opacity });
-      globeGroup.add(ringLine);
+        const ringMaterial = new THREE.LineBasicMaterial({
+          color: ringColors[i % ringColors.length],
+          transparent: true,
+          opacity: 0.75 + (Math.random() * 0.25),
+        });
+
+        const ringLine = new THREE.LineLoop(ringGeometry, ringMaterial);
+
+        ringLine.rotation.y = (i / ringCount) * Math.PI;
+        ringLine.rotation.x = Math.sin((i / ringCount) * Math.PI) * 0.6;
+        ringLine.rotation.z = Math.cos((i / ringCount) * Math.PI) * 0.2;
+
+        ringLines.push({ mesh: ringLine, baseOpacity: ringMaterial.opacity });
+        globeGroup.add(ringLine);
+      }
     }
 
     // Set Initial High Position for Drop-Down Emerging Animation
