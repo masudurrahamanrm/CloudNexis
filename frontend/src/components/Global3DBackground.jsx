@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 const Global3DBackground = () => {
   const mountRef = useRef(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   useEffect(() => {
     const currentMount = mountRef.current;
@@ -21,7 +22,7 @@ const Global3DBackground = () => {
       antialias: true, 
       alpha: true, 
       powerPreference: "high-performance",
-      precision: "highp"
+      precision: window.innerWidth < 768 ? "mediump" : "highp"
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -32,7 +33,6 @@ const Global3DBackground = () => {
     scene.add(ambientLight);
 
     // 5. Massive Dense Starfield System
-    const isMobile = window.innerWidth < 768;
     const starGeometry = new THREE.BufferGeometry();
     const starCount = isMobile ? 1000 : 3000;
     const starPositions = new Float32Array(starCount * 3);
@@ -241,7 +241,7 @@ const Global3DBackground = () => {
       {/* Global Twinkling & Floating 'Jonaki' (Firefly) Stars */}
       {showFireflies && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(150)].map((_, i) => {
+          {[...Array(isMobile ? 40 : 150)].map((_, i) => {
             const top = `${Math.random() * 100}%`;
             const left = `${Math.random() * 100}%`;
             const size = Math.random() * 1.8 + 0.4;

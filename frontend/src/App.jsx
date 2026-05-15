@@ -21,7 +21,7 @@ function App() {
 
   React.useEffect(() => {
     const lenis = new Lenis({
-      duration: 2.2,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',

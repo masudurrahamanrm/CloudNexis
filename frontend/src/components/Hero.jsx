@@ -33,15 +33,15 @@ const Hero = () => {
       antialias: true, 
       alpha: true, 
       powerPreference: "high-performance",
-      precision: "highp"
+      precision: window.innerWidth < 768 ? "mediump" : "highp"
     });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     currentMount.appendChild(renderer.domElement);
 
-    // 4. Dense Starfield System
     const starGeometry = new THREE.BufferGeometry();
-    const starCount = 2000;
+    const isMobile = window.innerWidth < 768;
+    const starCount = isMobile ? 600 : 2000;
     const starPositions = new Float32Array(starCount * 3);
 
     for (let i = 0; i < starCount * 3; i += 3) {
@@ -67,7 +67,7 @@ const Hero = () => {
     const globeGroup = new THREE.Group();
 
     // Inner Dark Core Sphere
-    const coreGeometry = new THREE.SphereGeometry(1.5, 32, 32);
+    const coreGeometry = new THREE.SphereGeometry(1.5, isMobileDevice ? 16 : 32, isMobileDevice ? 16 : 32);
     const coreMaterial = new THREE.MeshBasicMaterial({
       color: 0x030712,
       transparent: true,
@@ -77,9 +77,10 @@ const Hero = () => {
     globeGroup.add(coreMesh);
 
     // Generate Neon Orbital Rings
-    const ringCount = 24;
+    const isMobileDevice = window.innerWidth < 768;
+    const ringCount = isMobileDevice ? 14 : 24;
     const radius = 1.6;
-    const curveSegments = 64;
+    const curveSegments = isMobileDevice ? 32 : 64;
     const ringColors = [0x3b82f6, 0x2563eb, 0xffffff, 0x38bdf8, 0x60a5fa, 0xffffff];
     const ringLines = [];
 
