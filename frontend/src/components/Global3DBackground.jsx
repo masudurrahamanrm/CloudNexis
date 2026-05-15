@@ -5,6 +5,10 @@ import { motion } from 'framer-motion';
 const Global3DBackground = () => {
   const mountRef = useRef(null);
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const isLowEnd = typeof navigator !== 'undefined' && (
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4)
+  );
 
   useEffect(() => {
     const currentMount = mountRef.current;
@@ -34,7 +38,7 @@ const Global3DBackground = () => {
 
     // 5. Massive Dense Starfield System
     const starGeometry = new THREE.BufferGeometry();
-    const starCount = isMobile ? 1000 : 3000;
+    const starCount = isLowEnd ? 800 : (isMobile ? 1000 : 3000);
     const starPositions = new Float32Array(starCount * 3);
     const starColors = new Float32Array(starCount * 3);
 
@@ -72,8 +76,8 @@ const Global3DBackground = () => {
 
     // 6. Dynamic Interconnected Plexus Network System
     const plexusGroup = new THREE.Group();
-    const nodeCount = isMobile ? 65 : 120;
-    const maxDistance = isMobile ? 22.0 : 25.0;
+    const nodeCount = isLowEnd ? 35 : (isMobile ? 45 : 100);
+    const maxDistance = isLowEnd ? 15.0 : (isMobile ? 18.0 : 25.0);
 
     const nodePositions = new Float32Array(nodeCount * 3);
     const nodeVelocities = [];
@@ -156,28 +160,38 @@ const Global3DBackground = () => {
       }
       nodeGeometry.attributes.position.needsUpdate = true;
 
-      const p1 = new THREE.Vector3();
-      const p2 = new THREE.Vector3();
-
       for (let i = 0; i < nodeCount; i++) {
-        p1.set(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2]);
+        const x1 = positions[i * 3];
+        const y1 = positions[i * 3 + 1];
+        const z1 = positions[i * 3 + 2];
+        
         for (let j = i + 1; j < nodeCount; j++) {
-          p2.set(positions[j * 3], positions[j * 3 + 1], positions[j * 3 + 2]);
-          const dist = p1.distanceTo(p2);
-          if (dist < maxDistance) {
-            linePositions[vertexpos++] = p1.x;
-            linePositions[vertexpos++] = p1.y;
-            linePositions[vertexpos++] = p1.z;
-            lineColors[colorpos++] = 0.22;
-            lineColors[colorpos++] = 0.74;
-            lineColors[colorpos++] = 0.98;
+          const x2 = positions[j * 3];
+          const y2 = positions[j * 3 + 1];
+          const z2 = positions[j * 3 + 2];
 
-            linePositions[vertexpos++] = p2.x;
-            linePositions[vertexpos++] = p2.y;
-            linePositions[vertexpos++] = p2.z;
-            lineColors[colorpos++] = 0.55;
-            lineColors[colorpos++] = 0.36;
-            lineColors[colorpos++] = 0.96;
+          // Fast distance check before full calculation
+          const dx = x1 - x2;
+          const dy = y1 - y2;
+          const dz = z1 - z2;
+          
+          if (Math.abs(dx) < maxDistance && Math.abs(dy) < maxDistance) {
+            const distSq = dx * dx + dy * dy + dz * dz;
+            if (distSq < maxDistance * maxDistance) {
+              linePositions[vertexpos++] = x1;
+              linePositions[vertexpos++] = y1;
+              linePositions[vertexpos++] = z1;
+              lineColors[colorpos++] = 0.22;
+              lineColors[colorpos++] = 0.74;
+              lineColors[colorpos++] = 0.98;
+
+              linePositions[vertexpos++] = x2;
+              linePositions[vertexpos++] = y2;
+              linePositions[vertexpos++] = z2;
+              lineColors[colorpos++] = 0.55;
+              lineColors[colorpos++] = 0.36;
+              lineColors[colorpos++] = 0.96;
+            }
           }
         }
       }

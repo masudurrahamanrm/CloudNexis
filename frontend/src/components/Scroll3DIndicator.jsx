@@ -41,7 +41,11 @@ const Scroll3DIndicator = () => {
     camera.position.z = 4.5;
 
     // 3. Renderer Setup
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: false, 
+      alpha: true,
+      powerPreference: "low-power"
+    });
     renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     currentMount.appendChild(renderer.domElement);

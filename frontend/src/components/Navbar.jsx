@@ -40,8 +40,8 @@ const Navbar = () => {
       <motion.div 
         className={`max-w-5xl mx-auto transition-all duration-500 rounded-2xl sm:rounded-full border pointer-events-auto ${
           scrolled || isMobileMenuOpen
-            ? 'bg-[#090e17]/40 border-blue-500/30 backdrop-blur-xl py-2 sm:py-3 px-5 sm:px-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
-            : 'bg-white/[0.03] border-white/10 backdrop-blur-md py-3 sm:py-4 px-5 sm:px-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:border-white/20 hover:bg-white/[0.06]'
+            ? 'bg-[#090e17]/40 border-blue-500/30 backdrop-blur-xl py-1 sm:py-1.5 px-5 sm:px-8 shadow-[0_8px_32px_rgba(0,0,0,0.5)]' 
+            : 'bg-white/[0.03] border-white/10 backdrop-blur-md py-1.5 sm:py-2 px-5 sm:px-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:border-white/20 hover:bg-white/[0.06]'
         }`}
       >
         <div className="flex justify-between items-center">
@@ -51,7 +51,7 @@ const Navbar = () => {
             className="flex items-center gap-2 group cursor-pointer"
           >
             <div className="p-1 rounded-lg group-hover:scale-110 transition-all duration-300 overflow-hidden">
-              <img src="/logo.png" alt="CloudNexis Logo" className="w-10 h-10 object-contain rounded-lg scale-[1.5]" />
+              <img src="/logo.png" alt="CloudNexis Logo" className="w-7 h-7 object-contain rounded-lg" />
             </div>
             <span className="text-xl font-black tracking-tighter text-white">
               Cloud<span className="text-blue-400 font-bold">Nexis</span>
@@ -84,7 +84,7 @@ const Navbar = () => {
             <Link 
               to="/contact" 
               onClick={() => handleLinkClick('/contact')}
-              className="bg-white/5 border border-blue-500/30 text-white px-6 py-2.5 rounded-full font-black text-xs hover:bg-blue-600/10 hover:border-blue-500/50 transition-all duration-300 flex items-center gap-2 group cursor-pointer backdrop-blur-md shadow-lg"
+              className="bg-white/5 border border-blue-500/30 text-white px-5 py-1.5 rounded-full font-black text-[10px] hover:bg-blue-600/10 hover:border-blue-500/50 transition-all duration-300 flex items-center gap-2 group cursor-pointer backdrop-blur-md shadow-lg"
             >
               <span>Start Project</span>
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

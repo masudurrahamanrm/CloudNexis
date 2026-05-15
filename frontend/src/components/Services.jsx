@@ -119,7 +119,7 @@ const Services = () => {
   const expertiseLetters = "Expertise".split("");
 
   return (
-    <section id="services" className="pt-0 pb-20 sm:pb-32 bg-transparent relative overflow-hidden z-10">
+    <section id="services" className="pt-[20vh] pb-20 sm:pb-32 bg-transparent relative overflow-hidden z-10">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-24">

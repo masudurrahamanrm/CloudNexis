@@ -8,6 +8,11 @@ const Hero = () => {
   const mountRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const { scrollY } = useScroll();
+  const isMobileDevice = window.innerWidth < 768;
+  const isLowEnd = typeof navigator !== 'undefined' && (
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4)
+  );
 
   // Parallax transform for the 3D blob (moves slower than content on scroll)
   const blobParallaxY = useTransform(scrollY, [0, 1000], [0, 150]);
@@ -40,8 +45,7 @@ const Hero = () => {
     currentMount.appendChild(renderer.domElement);
 
     const starGeometry = new THREE.BufferGeometry();
-    const isMobile = window.innerWidth < 768;
-    const starCount = isMobile ? 600 : 2000;
+    const starCount = isLowEnd ? 150 : (isMobileDevice ? 300 : 2000);
     const starPositions = new Float32Array(starCount * 3);
 
     for (let i = 0; i < starCount * 3; i += 3) {
@@ -65,7 +69,6 @@ const Hero = () => {
 
     // 5. 3D Orbital Rings Globe (The Top Emerging "Blob")
     const globeGroup = new THREE.Group();
-    const isMobileDevice = window.innerWidth < 768;
 
     // Inner Dark Core Sphere
     const coreGeometry = new THREE.SphereGeometry(1.5, isMobileDevice ? 16 : 32, isMobileDevice ? 16 : 32);
@@ -76,7 +79,7 @@ const Hero = () => {
     });
     const coreMesh = new THREE.Mesh(coreGeometry, coreMaterial);
     globeGroup.add(coreMesh);
-    const ringCount = isMobileDevice ? 14 : 24;
+    const ringCount = isLowEnd ? 6 : (isMobileDevice ? 8 : 24);
     const radius = 1.6;
     const curveSegments = isMobileDevice ? 32 : 64;
     const ringColors = [0x3b82f6, 0x2563eb, 0xffffff, 0x38bdf8, 0x60a5fa, 0xffffff];
@@ -320,22 +323,19 @@ const Hero = () => {
   const modernAppsLetters = "Modern Apps".split("");
 
   return (
-    <section id="home" style={{ willChange: 'transform, opacity' }} className="relative min-h-[60vh] sm:min-h-[85vh] pt-[70px] sm:pt-[100px] pb-[10px] sm:pb-[40px] bg-transparent flex flex-col justify-start sm:justify-center items-center z-10 w-full overflow-visible">
+    <section id="home" style={{ willChange: 'transform, opacity' }} className="relative min-h-screen pt-[100px] sm:pt-20 pb-[40px] bg-transparent flex flex-col justify-center items-center z-10 w-full overflow-hidden">
 
       {/* 3D Glowing Animated Blob Container */}
       <motion.div
         style={{ y: blobParallaxY }}
-        initial={{ opacity: 0, scale: 0.8, y: -50 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 1.2, type: "spring", stiffness: 80 }}
-        className="absolute inset-x-0 top-[80px] sm:top-0 w-full max-w-5xl mx-auto h-[350px] sm:h-[600px] md:h-[700px] lg:h-[800px] pointer-events-auto z-10 flex items-center justify-center cursor-grab active:cursor-grabbing"
+        className="absolute inset-0 w-full h-full pointer-events-auto z-10 flex items-center justify-center cursor-grab active:cursor-grabbing"
       >
         {/* Three.js Canvas Mount */}
         <div ref={mountRef} className="absolute inset-0 w-full h-full pointer-events-auto" />
       </motion.div>
 
       {/* Hero Content Wrapper - Layered on top with z-30 */}
-      <div className="relative z-30 max-w-5xl mx-auto px-5 sm:px-6 text-center flex flex-col items-center justify-center pointer-events-none w-full my-auto mt-[400px] sm:mt-[10vh]">
+      <div className="relative z-30 max-w-5xl mx-auto px-5 sm:px-6 text-center flex flex-col items-center justify-center pointer-events-none w-full">
 
         {/* Responsive Heading with clamp() & Clean Wrapping */}
         <h1
