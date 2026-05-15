@@ -5,7 +5,7 @@ import CTA from '../components/CTA';
 
 const ServicesPage = () => {
   return (
-    <div className="min-h-screen bg-[#000000] overflow-hidden relative">
+    <div className="bg-transparent overflow-hidden relative z-10 w-full pt-[120px] pb-[80px]">
       <Services />
       <WhyChooseUs />
       <CTA />

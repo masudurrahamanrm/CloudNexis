@@ -8,7 +8,7 @@
   font-weight: 400;
 
   color-scheme: dark;
-  background-color: #000000;
+  background-color: #030712;
   color: rgba(255, 255, 255, 0.87);
 
   font-synthesis: none;
@@ -21,7 +21,9 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #000000;
+  background-color: #030712;
+  width: 100%;
+  position: relative;
 }
 
 html {
@@ -30,25 +32,25 @@ html {
 
 @layer components {
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(214,48,49,0.1)];
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(59,130,246,0.1)];
   }
   
   .glass-dark {
-    @apply bg-black/40 backdrop-blur-2xl border border-white/5 shadow-2xl;
+    @apply bg-[#090e17]/80 backdrop-blur-2xl border border-white/5 shadow-2xl;
   }
 
   .glow-text {
-    @apply drop-shadow-[0_0_15px_rgba(157,2,8,0.5)];
+    @apply drop-shadow-[0_0_15px_rgba(59,130,246,0.5)];
   }
 
   .glow-box {
-    @apply shadow-[0_0_50px_-12px_rgba(157,2,8,0.5)];
+    @apply shadow-[0_0_50px_-12px_rgba(59,130,246,0.5)];
   }
 
   .btn-primary {
-    @apply px-10 py-4 bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] 
+    @apply px-10 py-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 bg-[length:200%_auto] 
            text-white font-bold rounded-full hover:bg-[right_center] transition-all duration-500 
-           hover:shadow-[0_0_25px_rgba(214,48,49,0.5)] hover:-translate-y-1 active:scale-95;
+           hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] hover:-translate-y-1 active:scale-95;
   }
 
   .btn-secondary {
@@ -59,11 +61,27 @@ html {
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent;
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 sm:mb-16 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent px-4;
+    font-size: clamp(1.875rem, 8vw, 3rem);
   }
 
   .card-hover {
-    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20;
+    @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20;
+  }
+
+  /* Mobile Responsive Utilities */
+  .mobile-padding {
+    @apply px-4 sm:px-6 md:px-8;
+  }
+
+  .mobile-full-width {
+    @apply w-full sm:w-auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-primary, .btn-secondary {
+    @apply w-full text-center flex justify-center py-4 px-6;
   }
 }
 
@@ -73,23 +91,109 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #030712;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1a1a1a;
+  background: #1e293b;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #262626;
+  background: #334155;
 }
 
+/* Smoky Text Effect */
+.smoky-container {
+  position: relative;
+  display: inline-block;
+  will-change: transform;
+}
+
+.smoky-text {
+  position: relative;
+  z-index: 2;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.25));
+  display: inline-block;
+  -webkit-text-fill-color: transparent;
+}
+
+.smoky-text-white {
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.1));
+  background: none !important;
+}
+
+.smoke-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+  filter: blur(20px);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.smoke-layer-white {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+}
+
+@keyframes smoke-1 {
+  0% { transform: translate(-50%, -50%) scale(0.8) rotate(0deg); opacity: 0; }
+  50% { opacity: 0.7; transform: translate(-45%, -65%) scale(1.2) rotate(10deg); }
+  100% { transform: translate(-40%, -80%) scale(1.6) rotate(20deg); opacity: 0; }
+}
+
+@keyframes smoke-2 {
+  0% { transform: translate(-50%, -50%) scale(0.8) rotate(0deg); opacity: 0; }
+  50% { opacity: 0.6; transform: translate(-60%, -40%) scale(1.3) rotate(-15deg); }
+  100% { transform: translate(-70%, -30%) scale(1.8) rotate(-30deg); opacity: 0; }
+}
+
+@keyframes smoke-3 {
+  0% { transform: translate(-50%, -50%) scale(0.9) rotate(0deg); opacity: 0; }
+  50% { opacity: 0.5; transform: translate(-40%, -50%) scale(1.4) rotate(20deg); }
+  100% { transform: translate(-30%, -50%) scale(2.0) rotate(40deg); opacity: 0; }
+}
+
+@keyframes smoke-4 {
+  0% { transform: translate(-50%, -50%) scale(0.8) rotate(0deg); opacity: 0; }
+  50% { opacity: 0.6; transform: translate(-60%, -60%) scale(1.2) rotate(-10deg); }
+  100% { transform: translate(-75%, -75%) scale(1.7) rotate(-20deg); opacity: 0; }
+}
+
+@keyframes smoke-5 {
+  0% { transform: translate(-50%, -50%) scale(0.7) rotate(0deg); opacity: 0; }
+  50% { opacity: 0.5; transform: translate(-40%, -40%) scale(1.4) rotate(15deg); }
+  100% { transform: translate(-30%, -30%) scale(1.9) rotate(30deg); opacity: 0; }
+}
 .bg-mesh {
-  background-color: #000000;
+  background-color: #030712;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(255, 0, 0, 0.2) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(239, 68, 68, 0.2) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(214, 48, 49, 0.2) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(157, 2, 8, 0.2) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%);
+}
+
+.smoke-1 { animation: smoke-1 7s infinite linear; }
+.smoke-2 { animation: smoke-2 9s infinite linear 1.5s; }
+.smoke-3 { animation: smoke-3 11s infinite linear 3s; }
+.smoke-4 { animation: smoke-4 8s infinite linear 4.5s; }
+.smoke-5 { animation: smoke-5 10s infinite linear 6s; }
+
+@media (max-width: 768px) {
+  .smoke-layer {
+    display: none; /* Disable smoke on mobile for performance */
+  }
 }

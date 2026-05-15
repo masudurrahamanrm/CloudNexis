@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import TrustedBy from '../components/TrustedBy';
 import Services from '../components/Services';
+import About from '../components/About';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Portfolio from '../components/Portfolio';
 import Testimonials from '../components/Testimonials';
@@ -12,8 +12,8 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <TrustedBy />
       <Services />
+      <About />
       <WhyChooseUs />
       <Portfolio />
       <Testimonials />

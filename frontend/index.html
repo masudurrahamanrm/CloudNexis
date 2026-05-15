@@ -52,16 +52,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => console.log('SW registered'))
-          .catch(err => console.log('SW registration failed'));
-      });
-    }
-  </script>
-</body>
+    <div id="root">
+      <!-- Initial Load Skeleton / Preloader to prevent black screen delay -->
+      <style>
+        body { background-color: #030712; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .preloader { display: flex; flex-direction: column; align-items: center; gap: 20px; font-family: 'Inter', sans-serif; }
+        .spinner { width: 50px; height: 50px; border: 3px solid rgba(59, 130, 246, 0.2); border-radius: 50%; border-top-color: #3b82f6; animation: spin 1s ease-in-out infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .glow { position: absolute; width: 150px; height: 150px; background: rgba(59, 130, 246, 0.2); border-radius: 50%; filter: blur(40px); animation: pulse 2s infinite alternate; }
+        @keyframes pulse { to { transform: scale(1.5); opacity: 0.5; } }
+      </style>
+      <div class="glow"></div>
+      <div class="preloader">
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => console.log('SW registered'))
+            .catch(err => console.log('SW registration failed'));
+        });
+      }
+    </script>
+  </body>
 </html>
