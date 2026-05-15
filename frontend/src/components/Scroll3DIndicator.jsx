@@ -127,12 +127,6 @@ const Scroll3DIndicator = () => {
 
   return (
     <>
-      {/* Top Global Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 z-50 origin-left shadow-[0_0_20px_rgba(59,130,246,0.8)] pointer-events-none"
-        style={{ scaleX }}
-      />
-
       {/* Floating 3D Interactive Scroll Orb at Bottom Right */}
       <motion.div
         initial={{ opacity: 0, scale: 0.5, y: 50 }}
