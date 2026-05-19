@@ -25,8 +25,18 @@ const Footer = () => {
               We engineer high-performance digital experiences, from sleek startups to enterprise-scale cloud architectures.
             </p>
             <div className="flex gap-4">
-              {[Facebook, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-md">
+              {[
+                { Icon: Facebook, href: 'https://www.facebook.com/CloudNexis.in/' },
+                { Icon: Instagram, href: 'https://www.instagram.com/cloudnexis.in' },
+                { Icon: Linkedin, href: 'https://www.linkedin.com/company/cloudnexis/' }
+              ].map(({ Icon, href }, i) => (
+                <a 
+                  key={i} 
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-md"
+                >
                   <Icon size={18} />
                 </a>
               ))}
@@ -98,8 +108,8 @@ const Footer = () => {
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-gray-500 text-[11px] font-bold uppercase tracking-[0.1em]">
           <p>© {new Date().getFullYear()} CloudNexis Technologies. Designed for Excellence.</p>
           <div className="flex gap-10">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

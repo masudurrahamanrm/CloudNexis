@@ -10,6 +10,8 @@ import PortfolioPage from './pages/PortfolioPage';
 import AboutPage from './pages/AboutPage';
 import TeamPage from './pages/TeamPage';
 import ContactPage from './pages/ContactPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 import ScrollToTop from './components/ScrollToTop';
 import Scroll3DIndicator from './components/Scroll3DIndicator';
 import Global3DBackground from './components/Global3DBackground';
@@ -53,7 +55,7 @@ function App() {
       <Scroll3DIndicator />
       <Global3DBackground />
       
-      {/* App Container with ultra-light 15% opacity overlay to let 3D background shine completely */}
+      {/* App Container */}
       <div className="relative bg-transparent min-h-screen text-white selection:bg-blue-500/30 z-10">
         <Navbar />
 
@@ -66,6 +68,8 @@ function App() {
               <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
               <Route path="/team" element={<PageTransition><TeamPage /></PageTransition>} />
               <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+              <Route path="/privacy" element={<PageTransition><PrivacyPolicyPage /></PageTransition>} />
+              <Route path="/terms" element={<PageTransition><TermsOfServicePage /></PageTransition>} />
             </Routes>
           </AnimatePresence>
         </main>

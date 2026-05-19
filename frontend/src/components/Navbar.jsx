@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -50,8 +51,8 @@ const Navbar = () => {
             onClick={() => handleLinkClick('/')}
             className="flex items-center gap-2 group cursor-pointer"
           >
-            <div className="p-1 rounded-lg group-hover:scale-110 transition-all duration-300 overflow-hidden">
-              <img src="/logo.png" alt="CloudNexis Logo" className="w-7 h-7 object-contain rounded-lg" />
+            <div className="p-0.5 rounded-lg group-hover:scale-110 transition-all duration-300 overflow-hidden">
+              <img src="/logo.png" alt="CloudNexis Logo" className="h-[42px] w-auto object-contain" />
             </div>
             <span className="text-xl font-black tracking-tighter text-white">
               Cloud<span className="text-blue-400 font-bold">Nexis</span>

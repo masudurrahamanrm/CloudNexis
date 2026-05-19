@@ -1,0 +1,79 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Layout } from "./components/Layout";
+import { useEffect, useState } from "react";
+import './index.css';
+
+// Placeholder imports for pages we are about to create
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Users from "./pages/Users";
+import AddUser from "./pages/AddUser";
+import Search from "./pages/Search";
+import Security from "./pages/Security";
+import Settings from "./pages/Settings";
+import HelpCenter from "./pages/HelpCenter";
+import AuditLogs from "./pages/AuditLogs";
+import ActiveSessions from "./pages/ActiveSessions";
+import Terms from "./pages/Terms";
+import UserDetails from "./pages/UserDetails";
+import Explores from "./pages/Explores";
+import NewExploration from "./pages/NewExploration";
+import Support from "./pages/Support";
+
+// Simple Protected Route Component
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const token = localStorage.getItem("admin_token");
+  
+  if (!token) {
+    return <Navigate to="/admin/login" replace />;
+  }
+  
+  return <>{children}</>;
+};
+
+export default function AdminPanel() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("admin_token");
+    setIsAuthenticated(!!token);
+  }, []);
+
+  if (isAuthenticated === null) return null; // Wait for initial check
+
+  return (
+    <Routes>
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<SignUp />} />
+      <Route path="support" element={<Support />} />
+      <Route path="terms" element={<Terms />} />
+      <Route
+        path="*"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="insights" element={<Dashboard />} />
+                <Route path="users" element={<Users />} />
+                <Route path="users/new" element={<AddUser />} />
+                <Route path="users/:id" element={<UserDetails />} />
+                <Route path="search" element={<Search />} />
+                <Route path="security" element={<Security />} />
+                <Route path="security/sessions" element={<ActiveSessions />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="explores" element={<Explores />} />
+                <Route path="explores/new" element={<NewExploration />} />
+                <Route path="help" element={<HelpCenter />} />
+                <Route path="logs" element={<AuditLogs />} />
+                <Route path="*" element={<Navigate to="/admin" replace />} />
+              </Routes>
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
+}
+

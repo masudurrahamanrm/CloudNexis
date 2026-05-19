@@ -83,8 +83,8 @@ const TeamPage = () => {
     })
   };
 
-  const meetOurLetters = "Meet Our".split("");
-  const eliteTeamLetters = "Elite Team".split("");
+  const meetOurWords = "Meet Our".split(" ");
+  const developersDesignersWords = "Expert Developers & Designers".split(" ");
 
   return (
     <div className="bg-transparent overflow-hidden relative z-10 w-full pt-[120px] pb-[80px]">
@@ -100,62 +100,90 @@ const TeamPage = () => {
               The Minds Behind Cloud<span className="text-blue-400 font-bold">Nexis</span>
             </div>
             
-            <h1 className="text-[clamp(2.5rem,10vw,5rem)] md:text-8xl font-black text-white mb-6 tracking-tighter leading-tight">
+            <h1 className="text-[clamp(1.51rem,6.05vw,3.03rem)] md:text-[57px] font-black text-white mb-6 tracking-tighter leading-tight">
               <span className="inline-block smoky-container mx-2" style={{ perspective: "1000px" }}>
-                <span className="relative inline-flex items-center" style={{ transformStyle: 'preserve-3d' }}>
-                  {meetOurLetters.map((char, i) => {
-                    const center = meetOurLetters.length / 2;
-                    const rotationY = (center - i) * 5;
+                <span className="relative inline-flex items-center flex-wrap justify-center" style={{ transformStyle: 'preserve-3d' }}>
+                  {meetOurWords.map((word, wordIndex) => {
+                    let charOffset = 0;
+                    for (let w = 0; w < wordIndex; w++) {
+                      charOffset += meetOurWords[w].length + 1;
+                    }
                     return (
-                      <motion.span
-                        key={i}
-                        custom={i}
-                        variants={reactiveLetterVariants}
-                        initial="hidden"
-                        animate={["visible", "energyTouch"]}
-                        className="inline-block text-white"
-                        style={{ 
-                          display: 'inline-block', 
-                          minWidth: char === " " ? "0.3em" : "auto",
-                          textShadow: "0 1px 0 #ccc, 0 2px 0 #b0b0b0, 0 5px 10px rgba(0,0,0,0.3)",
-                          willChange: 'transform',
-                          transform: `rotateX(10deg) rotateY(${rotationY}deg) translateZ(${Math.abs(center - i) * -1.5}px)`
-                        }}
-                      >
-                        {char === " " ? "\u00A0" : char}
-                      </motion.span>
+                      <span key={wordIndex} className="inline-block whitespace-nowrap">
+                        {word.split("").map((char, charIndex) => {
+                          const globalIndex = charOffset + charIndex;
+                          const center = word.length / 2;
+                          const rotationY = (center - charIndex) * 5;
+                          return (
+                            <motion.span
+                              key={charIndex}
+                              custom={globalIndex}
+                              variants={reactiveLetterVariants}
+                              initial="hidden"
+                              animate={["visible", "energyTouch"]}
+                              className="inline-block text-white"
+                              style={{ 
+                                display: 'inline-block', 
+                                minWidth: char === " " ? "0.3em" : "auto",
+                                textShadow: "0 1px 0 #ccc, 0 2px 0 #b0b0b0, 0 5px 10px rgba(0,0,0,0.3)",
+                                willChange: 'transform',
+                                transform: `rotateX(10deg) rotateY(${rotationY}deg) translateZ(${Math.abs(center - charIndex) * -1.5}px)`
+                              }}
+                            >
+                              {char}
+                            </motion.span>
+                          );
+                        })}
+                        {wordIndex < meetOurWords.length - 1 && (
+                          <span className="inline-block" style={{ minWidth: "0.3em" }}>&nbsp;</span>
+                        )}
+                      </span>
                     );
                   })}
                 </span>
                 <div className="smoke-layer smoke-layer-white smoke-1"></div>
                 <div className="smoke-layer smoke-layer-white smoke-2"></div>
               </span>
-              <br className="sm:hidden" />
+              <br />
               <span className="inline-block smoky-container mx-2" style={{ perspective: "1000px" }}>
-                <span className="relative inline-flex items-center" style={{ transformStyle: 'preserve-3d' }}>
-                  {eliteTeamLetters.map((char, i) => {
-                    const center = eliteTeamLetters.length / 2;
-                    const rotationY = (center - i) * 6;
+                <span className="relative inline-flex items-center flex-wrap justify-center" style={{ transformStyle: 'preserve-3d' }}>
+                  {developersDesignersWords.map((word, wordIndex) => {
+                    let charOffset = "Meet Our".length;
+                    for (let w = 0; w < wordIndex; w++) {
+                      charOffset += developersDesignersWords[w].length + 1;
+                    }
                     return (
-                      <motion.span
-                        key={i}
-                        custom={i + meetOurLetters.length}
-                        variants={reactiveLetterVariants}
-                        initial="hidden"
-                        animate={["visible", "energyTouch"]}
-                        className="inline-block bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent"
-                        style={{ 
-                          display: 'inline-block', 
-                          minWidth: char === " " ? "0.3em" : "auto",
-                          WebkitBackgroundClip: 'text',
-                          WebkitTextFillColor: 'transparent',
-                          textShadow: "0 1px 0 #1e3a8a, 0 2px 0 #1d4ed8, 0 8px 15px rgba(0,0,0,0.3)",
-                          willChange: 'transform',
-                          transform: `rotateX(10deg) rotateY(${rotationY}deg) translateZ(${Math.abs(center - i) * -2.5}px)`
-                        }}
-                      >
-                        {char === " " ? "\u00A0" : char}
-                      </motion.span>
+                      <span key={wordIndex} className="inline-block whitespace-nowrap">
+                        {word.split("").map((char, charIndex) => {
+                          const globalIndex = charOffset + charIndex;
+                          const center = word.length / 2;
+                          const rotationY = (center - charIndex) * 6;
+                          return (
+                            <motion.span
+                              key={charIndex}
+                              custom={globalIndex}
+                              variants={reactiveLetterVariants}
+                              initial="hidden"
+                              animate={["visible", "energyTouch"]}
+                              className="inline-block bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent"
+                              style={{ 
+                                display: 'inline-block', 
+                                minWidth: char === " " ? "0.3em" : "auto",
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                textShadow: "0 1px 0 #1e3a8a, 0 2px 0 #1d4ed8, 0 8px 15px rgba(0,0,0,0.3)",
+                                willChange: 'transform',
+                                transform: `rotateX(10deg) rotateY(${rotationY}deg) translateZ(${Math.abs(center - charIndex) * -2.5}px)`
+                              }}
+                            >
+                              {char}
+                            </motion.span>
+                          );
+                        })}
+                        {wordIndex < developersDesignersWords.length - 1 && (
+                          <span className="inline-block" style={{ minWidth: "0.3em" }}>&nbsp;</span>
+                        )}
+                      </span>
                     );
                   })}
                 </span>

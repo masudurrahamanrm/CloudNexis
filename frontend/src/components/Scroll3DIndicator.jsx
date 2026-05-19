@@ -136,7 +136,7 @@ const Scroll3DIndicator = () => {
         initial={{ opacity: 0, scale: 0.5, y: 50 }}
         animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.5, y: isVisible ? 0 : 50 }}
         transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-        className="fixed bottom-28 right-4 sm:bottom-8 sm:right-8 z-50 pointer-events-auto"
+        className="fixed bottom-32 right-4 sm:bottom-32 sm:right-8 z-50 pointer-events-auto"
       >
         <button
           onClick={scrollToTop}

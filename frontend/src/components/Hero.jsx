@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Play, CheckCircle2 } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowUpRight, Play } from 'lucide-react';
 import * as THREE from 'three';
 
 const Hero = () => {
