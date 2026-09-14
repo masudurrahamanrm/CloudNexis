@@ -13,10 +13,10 @@ import ContactPage from './pages/ContactPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import ScrollToTop from './components/ScrollToTop';
-import Scroll3DIndicator from './components/Scroll3DIndicator';
 import Global3DBackground from './components/Global3DBackground';
 import MobileNav from './components/MobileNav';
 import PageTransition from './components/PageTransition';
+import AIChatbot from './components/AIChatbot';
 
 function App() {
   const location = useLocation();
@@ -52,7 +52,6 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <Scroll3DIndicator />
       <Global3DBackground />
       
       {/* App Container */}
@@ -75,6 +74,7 @@ function App() {
         </main>
 
         <MobileNav />
+        <AIChatbot />
         <Footer />
       </div>
     </>
